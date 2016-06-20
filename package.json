@@ -1,0 +1,45 @@
+{
+  "name": "live-video-notifier",
+  "version": "1.0.0",
+  "description": "B站直播提醒",
+  "main": "index.js",
+  "dependencies": {
+    "node-schedule": "^1.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "She Ailun",
+  "license": "ISC",
+  "bilibiliConfigs": {
+    "scheduleInterval": 1,
+    "liveFlag": "LIVE",
+    "smsPhoneNum": 13727003240,
+    "downloadFolder": "ftp",
+    "kplus": {
+      "sysData": {
+        "Token": "nol3y00vYWKNX21Xy9C2kjRl0KA",
+        "appSecret": "7d8dc5ecba1c42829274a19a76fd82d1",
+        "return_type": "json"
+      }
+    },
+    "users": [
+      {
+        "name": "jf3096",
+        "videoId": 288546,
+        "url": "http://183.6.240.106/live-play.acgvideo.com/live/761/live_22622195_2359070.flv?wsSecret=38162856c23d2dbbc01b10f6e586d135&wsTime=57409877&wshc_tag=0&wsts_tag=576817c2&wsid_tag=79217323&wsiphost=ipdbm"
+      },
+      {
+        "name": "雷涟漪の日常",
+        "videoId": 20375,
+        "url": "http://220.243.235.11/live-play.acgvideo.com/live/375/live_7905675_8045649.flv?wsSecret=a08ba352cec820ee33dd06d025f20947&wsTime=573afa78&wshc_tag=0&wsts_tag=57627969&wsid_tag=6baad9f7&wsiphost=ipdbm"
+      },
+      {
+        "name": "离城的直播间",
+        "videoId": 61132,
+        "url": "http://220.243.235.11/live-play.acgvideo.com/live/375/live_7905675_8045649.flv?wsSecret=a08ba352cec820ee33dd06d025f20947&wsTime=573afa78&wshc_tag=0&wsts_tag=57627969&wsid_tag=6baad9f7&wsiphost=ipdbm"
+      }
+    ]
+  }
+}
