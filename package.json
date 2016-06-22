@@ -4,7 +4,8 @@
   "description": "B站直播提醒",
   "main": "index.js",
   "dependencies": {
-    "node-schedule": "^1.1.1"
+    "node-schedule": "^1.1.1",
+    "request-promise": "^3.0.0"
   },
   "devDependencies": {},
   "scripts": {

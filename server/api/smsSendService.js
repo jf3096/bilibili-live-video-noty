@@ -1,6 +1,6 @@
 "use strict";
-var req_1 = require("./req");
-var bilibiliConfigs_1 = require("../models/bilibiliConfigs");
+var req_1 = require('./req');
+var bilibiliConfigs_1 = require('../models/bilibiliConfigs');
 /**
  * Created by allen on 2016/6/21.
  */
@@ -15,4 +15,3 @@ function sendSMSCode() {
     return req_1.httpGet(url, requestData);
 }
 exports.sendSMSCode = sendSMSCode;
-sendSMSCode();
