@@ -4,10 +4,10 @@ var bilibiliConfigs_1 = require('../models/bilibiliConfigs');
 /**
  * Created by allen on 2016/6/21.
  */
-function sendSMSCode() {
+function sendSMSCode(mobile) {
     var url = "http://ksms.temaiyao.com/api/SMSSend/SendSMSCode";
     var requestData = {
-        Mobile: bilibiliConfigs_1.bilibiliConfigs.smsPhoneNum,
+        Mobile: mobile,
         Token: bilibiliConfigs_1.bilibiliConfigs.kplus.sysData.Token,
         appSecret: bilibiliConfigs_1.bilibiliConfigs.kplus.sysData.appSecret,
         return_type: bilibiliConfigs_1.bilibiliConfigs.kplus.sysData.return_type

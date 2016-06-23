@@ -1,13 +1,13 @@
+"use strict";
 /**
  * Created by allen on 2016/6/21.
  */
-"use strict";
-var schedule = require("node-schedule");
-var bilibiliConfigs_1 = require("../models/bilibiliConfigs");
-var bilibiliService_1 = require("../api/bilibiliService");
+var schedule = require('node-schedule');
+var bilibiliConfigs_1 = require('../models/bilibiliConfigs');
+var bilibiliService_1 = require('../api/bilibiliService');
 var Promise = require('bluebird');
-var downloader_1 = require("../api/downloader");
-var smsSendService_1 = require("../api/smsSendService");
+var downloader_1 = require('../api/downloader');
+var smsSendService_1 = require('../api/smsSendService');
 var scheduleInterval = bilibiliConfigs_1.bilibiliConfigs.scheduleInterval;
 function resolveAllVideoStatus() {
     var promisePendingList = [];
@@ -17,16 +17,18 @@ function resolveAllVideoStatus() {
     return Promise.all(promisePendingList);
 }
 exports.resolveAllVideoStatus = resolveAllVideoStatus;
-function executeDownloads(statusList) {
+function executeSMS() {
+    return Promise.all(bilibiliConfigs_1.bilibiliConfigs.smsPhoneNumArr.map(function (value) {
+        return smsSendService_1.sendSMSCode(value);
+    }));
+}
+exports.executeSMS = executeSMS;
+function executeDownloads(statusList, startDownloadCb) {
     statusList.forEach(function (status, index) {
         if (status) {
-            var user_1 = bilibiliConfigs_1.bilibiliConfigs.users[index];
-            if (!user_1.$isDownloading) {
-                user_1.$isDownloading = true;
-                smsSendService_1.sendSMSCode();
-                downloader_1.download(user_1.url, user_1.name, function () {
-                    user_1.$isDownloading = false;
-                });
+            var user = bilibiliConfigs_1.bilibiliConfigs.users[index];
+            if (!user.$isDownloading) {
+                startDownloadCb(user);
             }
         }
     });
@@ -37,7 +39,13 @@ function executeSchedules() {
         console.log('statusCheckingSchedule', new Date());
         resolveAllVideoStatus().then(function (statusList) {
             console.log('statusList', statusList);
-            executeDownloads(statusList);
+            executeDownloads(statusList, function (user) {
+                user.$isDownloading = true;
+                executeSMS();
+                downloader_1.download(user.url, user.name, function () {
+                    user.$isDownloading = false;
+                });
+            });
         });
     });
     return [statusCheckingSchedule];

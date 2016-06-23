@@ -1,0 +1,19 @@
+[
+  {
+    "uid": "bilibili",
+    "append": true,
+    "watch": true,
+    "debug": true,
+    "script": "server.js",
+    "workingDir": "./"
+  },
+  {
+    "uid": "httpServer",
+    "append": true,
+    "watch": true,
+    "COMMAND": "http-server",
+    "args": [
+      "./ftp"
+    ]
+  }
+]

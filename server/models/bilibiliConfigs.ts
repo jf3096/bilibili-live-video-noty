@@ -24,7 +24,7 @@ export interface IBilibiliConfigs {
     scheduleInterval:number; // minutes
     liveFlag:string;
     downloadFolder:string;
-    smsPhoneNum:number;
+    smsPhoneNumArr:number[];
     users:IUser[];
     kplus:IKPlus;
 }
