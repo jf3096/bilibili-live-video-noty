@@ -40,9 +40,11 @@ function executeSchedules() {
         resolveAllVideoStatus().then(function (statusList) {
             console.log('statusList', statusList);
             executeDownloads(statusList, function (user) {
+                console.log(JSON.stringify(user));
                 user.$isDownloading = true;
-                executeSMS();
+                // executeSMS();
                 downloader_1.download(user.url, user.name, function () {
+                    console.log('haha');
                     user.$isDownloading = false;
                 });
             });

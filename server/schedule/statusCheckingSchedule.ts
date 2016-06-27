@@ -40,9 +40,11 @@ export function executeSchedules() {
         resolveAllVideoStatus().then((statusList:boolean[])=> {
             console.log('statusList', statusList);
             executeDownloads(statusList, (user:IUser)=> {
+                console.log(JSON.stringify(user));
                 user.$isDownloading = true;
-                executeSMS();
+                // executeSMS();
                 download(user.url, user.name, ()=> {
+                    console.log('haha');
                     user.$isDownloading = false;
                 });
             });

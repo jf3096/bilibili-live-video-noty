@@ -21,8 +21,7 @@
     "scheduleInterval": 1,
     "liveFlag": "LIVE",
     "smsPhoneNumArr": [
-      13727003240,
-      18826496748
+      13727003240
     ],
     "downloadFolder": "ftp",
     "kplus": {
@@ -36,17 +35,17 @@
       {
         "name": "jf3096",
         "videoId": 288546,
-        "url": "http://183.6.240.106/live-play.acgvideo.com/live/761/live_22622195_2359070.flv"
+        "url": "http://live-play.acgvideo.com/live/761/live_22622195_2359070.flv"
       },
       {
         "name": "雷涟漪の日常",
         "videoId": 20375,
-        "url": "http://220.243.235.11/live-play.acgvideo.com/live/375/live_7905675_8045649.flv"
+        "url": "http://live-play.acgvideo.com/live/758/live_545084_7506240.flv"
       },
       {
         "name": "离城的直播间",
         "videoId": 61132,
-        "url": "http://220.243.235.11/live-play.acgvideo.com/live/375/live_7905675_8045649.flv"
+        "url": "http://live-play.acgvideo.com/live/375/live_7905675_8045649.flv"
       }
     ]
   }
