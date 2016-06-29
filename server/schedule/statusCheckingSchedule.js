@@ -44,7 +44,6 @@ function executeSchedules() {
                 user.$isDownloading = true;
                 // executeSMS();
                 downloader_1.download(user.url, user.name, function () {
-                    console.log('haha');
                     user.$isDownloading = false;
                 });
             });

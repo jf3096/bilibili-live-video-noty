@@ -30,7 +30,3 @@ export function download(url:string, filename:string, cb?:Function) {
         });
     });
 }
-
-download('http://live-play.acgvideo.com/live/761/live_22622195_2359070.flv', '123', function () {
-    console.log('done');
-})
