@@ -9,9 +9,12 @@
     "express": "^4.14.0",
     "http-server": "^0.9.0",
     "node-schedule": "^1.1.1",
-    "request-promise": "^3.0.0"
+    "request-promise": "^3.0.0",
+    "xml2js": "^0.4.16"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "ssh-exec": "^2.0.0"
+  },
   "scripts": {
     "start": "forever stop bilibili & forever stop httpServer || forever start forever-config.json && forever logs"
   },
@@ -34,18 +37,19 @@
     "users": [
       {
         "name": "jf3096",
-        "videoId": 288546,
-        "url": "http://live-play.acgvideo.com/live/761/live_22622195_2359070.flv"
+        "videoId": 288546
       },
       {
         "name": "雷涟漪の日常",
-        "videoId": 20375,
-        "url": "http://live-play.acgvideo.com/live/758/live_545084_7506240.flv"
+        "videoId": 20375
       },
       {
         "name": "离城的直播间",
-        "videoId": 61132,
-        "url": "http://live-play.acgvideo.com/live/375/live_7905675_8045649.flv"
+        "videoId": 61132
+      },
+      {
+        "name": "锦鲤书签，午夜12点赶稿",
+        "videoId": 109176
       }
     ]
   }

@@ -13,3 +13,7 @@ node_modules
 
 #video resouces
 ftp
+
+
+#password
+ssh-shell.js

@@ -5,7 +5,6 @@
 export interface IUser {
     name:string;
     videoId:number;
-    url:string;
     $isDownloading?:boolean;
 }
 

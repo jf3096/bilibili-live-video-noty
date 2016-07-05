@@ -7,6 +7,7 @@ import {getVideoStatus} from '../api/bilibiliService';
 import * as Promise from 'bluebird';
 import {download} from '../api/downloader';
 import {sendSMSCode} from '../api/smsSendService';
+import {getLinkKey} from '../api/link';
 const scheduleInterval = bilibiliConfigs.scheduleInterval;
 
 export function resolveAllVideoStatus() {
@@ -38,16 +39,22 @@ export function executeSchedules() {
     const statusCheckingSchedule = schedule.scheduleJob(`*/${scheduleInterval} * * * *`, function () {
         console.log('statusCheckingSchedule', new Date());
         resolveAllVideoStatus().then((statusList:boolean[])=> {
-            console.log('statusList', statusList);
             executeDownloads(statusList, (user:IUser)=> {
                 console.log(JSON.stringify(user));
-                user.$isDownloading = true;
-                // executeSMS();
-                download(user.url, user.name, ()=> {
-                    user.$isDownloading = false;
+                getLinkKey(user.videoId).then((downloadUrl)=> {
+                    if (downloadUrl) {
+                        triggerDownload(user, downloadUrl);
+                    }
                 });
             });
         });
     });
     return [statusCheckingSchedule]
+}
+
+export function triggerDownload(user:IUser, downloadUrl:string) {
+    user.$isDownloading = true;
+    return download(downloadUrl, user.name, ()=> {
+        user.$isDownloading = false;
+    });
 }

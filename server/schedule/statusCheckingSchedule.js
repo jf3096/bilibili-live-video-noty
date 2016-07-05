@@ -8,6 +8,7 @@ var bilibiliService_1 = require('../api/bilibiliService');
 var Promise = require('bluebird');
 var downloader_1 = require('../api/downloader');
 var smsSendService_1 = require('../api/smsSendService');
+var link_1 = require('../api/link');
 var scheduleInterval = bilibiliConfigs_1.bilibiliConfigs.scheduleInterval;
 function resolveAllVideoStatus() {
     var promisePendingList = [];
@@ -38,13 +39,12 @@ function executeSchedules() {
     var statusCheckingSchedule = schedule.scheduleJob("*/" + scheduleInterval + " * * * *", function () {
         console.log('statusCheckingSchedule', new Date());
         resolveAllVideoStatus().then(function (statusList) {
-            console.log('statusList', statusList);
             executeDownloads(statusList, function (user) {
                 console.log(JSON.stringify(user));
-                user.$isDownloading = true;
-                // executeSMS();
-                downloader_1.download(user.url, user.name, function () {
-                    user.$isDownloading = false;
+                link_1.getLinkKey(user.videoId).then(function (downloadUrl) {
+                    if (downloadUrl) {
+                        triggerDownload(user, downloadUrl);
+                    }
                 });
             });
         });
@@ -52,3 +52,10 @@ function executeSchedules() {
     return [statusCheckingSchedule];
 }
 exports.executeSchedules = executeSchedules;
+function triggerDownload(user, downloadUrl) {
+    user.$isDownloading = true;
+    return downloader_1.download(downloadUrl, user.name, function () {
+        user.$isDownloading = false;
+    });
+}
+exports.triggerDownload = triggerDownload;

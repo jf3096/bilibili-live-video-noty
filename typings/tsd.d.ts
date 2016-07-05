@@ -9,3 +9,4 @@
 /// <reference path="request/request.d.ts" />
 /// <reference path="serve-static/serve-static.d.ts" />
 /// <reference path="phantom/phantom.d.ts" />
+/// <reference path="xml2js/xml2js.d.ts" />

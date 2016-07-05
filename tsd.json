@@ -34,6 +34,9 @@
     },
     "phantom/phantom.d.ts": {
       "commit": "e325b363f5ee9c72ebde49f1e783ae725f64b7e2"
+    },
+    "xml2js/xml2js.d.ts": {
+      "commit": "42335c83eda05c7d7c007788629aa58d3b008fca"
     }
   }
 }
