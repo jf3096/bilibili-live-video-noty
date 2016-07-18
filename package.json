@@ -27,18 +27,7 @@
       13727003240
     ],
     "downloadFolder": "ftp",
-    "kplus": {
-      "sysData": {
-        "Token": "nol3y00vYWKNX21Xy9C2kjRl0KA",
-        "appSecret": "7d8dc5ecba1c42829274a19a76fd82d1",
-        "return_type": "json"
-      }
-    },
     "users": [
-      {
-        "name": "jf3096",
-        "videoId": 288546
-      },
       {
         "name": "雷涟漪の日常",
         "videoId": 20375
@@ -48,8 +37,8 @@
         "videoId": 61132
       },
       {
-        "name": "锦鲤书签，午夜12点赶稿",
-        "videoId": 109176
+        "name": "艾伦测试",
+        "videoId": 288546
       }
     ]
   }
