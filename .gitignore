@@ -1,7 +1,3 @@
-# Created by .ignore support plugin (hsz.mobi)
-### Example user template template
-### Example user template
-
 # IntelliJ project files
 .idea
 *.iml
@@ -14,6 +10,7 @@ node_modules
 #video resouces
 ftp
 
-
 #password
 ssh-shell.js
+
+*.map

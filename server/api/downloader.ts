@@ -3,30 +3,50 @@
  */
 
 import * as http from 'http';
-import * as fs from 'fs';
-import {WriteStream} from 'fs';
-import {bilibiliConfigs} from '../models/bilibiliConfigs';
-import {isFunction, formatDate} from '../utils/data/dataUtils';
+import {IncomingMessage} from 'http';
 
-function getCurrentDownloadFormatDateString():string {
-    return formatDate.bind(new Date())('yyyy-MM-dd-hhmm');
+/**
+ * LOCATION_CHANGE_STATUS
+ * 302重定向
+ *
+ * @const
+ */
+const LOCATION_CHANGE_STATUS = 302;
+
+/**
+ * download
+ * 文件下载模块
+ *
+ * @return {IncomingMessage} response
+ */
+export function download(url:string):Promise<IncomingMessage> {
+    let loopCounter = 0;
+    return new Promise((resolve)=> {
+        locationDownloadUrl(url, resolve, loopCounter)
+    }) as Promise<IncomingMessage>;
 }
 
-export function getDownloadFullPath(filename:string):string {
-    return `${bilibiliConfigs.downloadFolder}/${filename}-${getCurrentDownloadFormatDateString()}.flv`;
-}
+/**
+ * MAX_302_LOOP_TIME
+ * 最大循环次数
+ *
+ * @const
+ */
+const MAX_302_LOOP_TIME = 10;
 
-export function download(url:string, filename:string, cb?:Function) {
-    let file:WriteStream = fs.createWriteStream(getDownloadFullPath(filename));
-    http.get(url, function (response) {
-        if (response.statusCode === 302) {
-            download(response.headers.location, filename, cb);
-            return;
+/**
+ * locationDownloadUrl
+ * 下载地址定位
+ */
+function locationDownloadUrl(url:string, resolve, loopCounter:number):void {
+    if (loopCounter === MAX_302_LOOP_TIME) {
+        throw new Error('downloader.ts: potential infinite loop for seeking download url address');
+    }
+    http.get(url, function (response:IncomingMessage) {
+        if (response.statusCode === LOCATION_CHANGE_STATUS) {
+            locationDownloadUrl(response.headers.location, resolve, loopCounter++);
+        } else {
+            resolve(response)
         }
-        response.pipe(file);
-        file.on('finish', function () {
-            isFunction(cb) && cb();
-            file.close();
-        });
     });
 }

@@ -16,9 +16,9 @@
     "ssh-exec": "^2.0.0"
   },
   "scripts": {
-    "start": "forever stop bilibili & forever stop httpServer || forever start forever-config.json && forever logs"
+    "start": "node server.js"
   },
-  "author": "She Ailun",
+  "author": "Ailun She",
   "license": "ISC",
   "bilibiliConfigs": {
     "scheduleInterval": 1,

@@ -3,28 +3,47 @@
  */
 "use strict";
 var http = require('http');
-var fs = require('fs');
-var bilibiliConfigs_1 = require('../models/bilibiliConfigs');
-var dataUtils_1 = require('../utils/data/dataUtils');
-function getCurrentDownloadFormatDateString() {
-    return dataUtils_1.formatDate.bind(new Date())('yyyy-MM-dd-hhmm');
-}
-function getDownloadFullPath(filename) {
-    return bilibiliConfigs_1.bilibiliConfigs.downloadFolder + "/" + filename + "-" + getCurrentDownloadFormatDateString() + ".flv";
-}
-exports.getDownloadFullPath = getDownloadFullPath;
-function download(url, filename, cb) {
-    var file = fs.createWriteStream(getDownloadFullPath(filename));
-    http.get(url, function (response) {
-        if (response.statusCode === 302) {
-            download(response.headers.location, filename, cb);
-            return;
-        }
-        response.pipe(file);
-        file.on('finish', function () {
-            dataUtils_1.isFunction(cb) && cb();
-            file.close();
-        });
+/**
+ * LOCATION_CHANGE_STATUS
+ * 302重定向
+ *
+ * @const
+ */
+var LOCATION_CHANGE_STATUS = 302;
+/**
+ * download
+ * 文件下载模块
+ *
+ * @return {IncomingMessage} response
+ */
+function download(url) {
+    var loopCounter = 0;
+    return new Promise(function (resolve) {
+        locationDownloadUrl(url, resolve, loopCounter);
     });
 }
 exports.download = download;
+/**
+ * MAX_302_LOOP_TIME
+ * 最大循环次数
+ *
+ * @const
+ */
+var MAX_302_LOOP_TIME = 10;
+/**
+ * locationDownloadUrl
+ * 下载地址定位
+ */
+function locationDownloadUrl(url, resolve, loopCounter) {
+    if (loopCounter === MAX_302_LOOP_TIME) {
+        throw new Error('downloader.ts: potential infinite loop for seeking download url address');
+    }
+    http.get(url, function (response) {
+        if (response.statusCode === LOCATION_CHANGE_STATUS) {
+            locationDownloadUrl(response.headers.location, resolve, loopCounter++);
+        }
+        else {
+            resolve(response);
+        }
+    });
+}
