@@ -1,5 +1,6 @@
 "use strict";
-var statusCheckingSchedule_1 = require('./server/schedule/statusCheckingSchedule');
+Object.defineProperty(exports, "__esModule", { value: true });
+var statusCheckingSchedule_1 = require("./server/schedule/statusCheckingSchedule");
 /**
  * Created by allen on 2016/6/20.
  */

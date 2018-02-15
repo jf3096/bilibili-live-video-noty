@@ -1,7 +1,8 @@
 "use strict";
-var dataUtils_1 = require('../utils/data/dataUtils');
-var bilibiliConfigs_1 = require('../models/bilibiliConfigs');
-var fs = require('fs');
+Object.defineProperty(exports, "__esModule", { value: true });
+var dataUtils_1 = require("../utils/data/dataUtils");
+var bilibiliConfigs_1 = require("../models/bilibiliConfigs");
+var fs = require("fs");
 /**
  * Created by allen on 2016/7/19.
  */

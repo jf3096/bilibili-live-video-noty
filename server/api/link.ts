@@ -2,8 +2,7 @@
  * Created by allen on 2016/6/29.
  */
 import {httpGet} from './req';
-import {parseString} from 'xml2js';
-
+import * as invariant from 'invariant';
 
 /**
  * getDownloadUrlByVideoId
@@ -11,18 +10,15 @@ import {parseString} from 'xml2js';
  *
  * @return {Promise<string>} 下载地址Promise对象
  */
-export function getDownloadUrlByVideoId(videoId:number):Promise<string> {
+export async function getDownloadUrlByVideoId(videoId: number): Promise<string> {
     /**
-     * 以下请求会返回XML字符串, 该XML字符串为B站可下载的服务站点
+     * 以下请求返回下载列表
+     * https://api.live.bilibili.com/room/v1/Room/playUrl?cid=381652&quality=0&platform=web
      */
-    return httpGet('http://live.bilibili.com/api/playurl', {cid: videoId}).then((xml:string)=> {
-            let downloadUrl = null;
-            parseString(xml, function (err, result) {
-                if (!err && Object.keys(result)) {
-                    downloadUrl = result.video.durl[0].url[0]
-                }
-            });
-            return downloadUrl;
-        }
-    )
+    const response = JSON.parse(await httpGet('https://api.live.bilibili.com/room/v1/Room/playUrl', {cid: videoId}) as string);
+    const {code, msg, data} = response as any;
+    invariant(code === 0 /** 成功 */, `getDownloadUrlByVideoId: 请求失败，状态码: ${code}, 信息：${msg}`);
+    const {durl} = data;
+    const {url} = durl[0];
+    return url;
 }

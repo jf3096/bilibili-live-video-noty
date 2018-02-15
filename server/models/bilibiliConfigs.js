@@ -1,5 +1,6 @@
+"use strict";
 /**
  * Created by allen on 2016/6/20.
  */
-"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.bilibiliConfigs = require('../../package.json').bilibiliConfigs;

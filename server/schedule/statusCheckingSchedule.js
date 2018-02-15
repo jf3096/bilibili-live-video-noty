@@ -1,15 +1,16 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * Created by allen on 2016/6/21.
  */
-var schedule = require('node-schedule');
-var bilibiliConfigs_1 = require('../models/bilibiliConfigs');
-var bilibiliService_1 = require('../api/bilibiliService');
-var Promise = require('bluebird');
-var downloader_1 = require('../api/downloader');
-var smsSendService_1 = require('../api/smsSendService');
-var link_1 = require('../api/link');
-var fileSteam_1 = require('../io/fileSteam');
+var schedule = require("node-schedule");
+var bilibiliConfigs_1 = require("../models/bilibiliConfigs");
+var bilibiliService_1 = require("../api/bilibiliService");
+var Promise = require("bluebird");
+var downloader_1 = require("../api/downloader");
+var smsSendService_1 = require("../api/smsSendService");
+var link_1 = require("../api/link");
+var fileSteam_1 = require("../io/fileSteam");
 var scheduleInterval = bilibiliConfigs_1.bilibiliConfigs.scheduleInterval;
 /**
  * resolveVideosStatus
@@ -20,7 +21,8 @@ var scheduleInterval = bilibiliConfigs_1.bilibiliConfigs.scheduleInterval;
 function resolveVideosStatus() {
     var promisePendingList = [];
     bilibiliConfigs_1.bilibiliConfigs.users.forEach(function (user) {
-        promisePendingList.push(bilibiliService_1.getVideoStatus(user.videoId));
+        var statusPromise = bilibiliService_1.getVideoStatus(user.videoId);
+        promisePendingList.push(statusPromise);
     });
     return Promise.all(promisePendingList);
 }

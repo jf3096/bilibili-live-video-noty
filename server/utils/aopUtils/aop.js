@@ -1,7 +1,8 @@
+"use strict";
 /**
  * Created by allen on 2016/6/20.
  */
-"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 function aop(concreteFn) {
     var middlewareArr = [];
     for (var _i = 1; _i < arguments.length; _i++) {

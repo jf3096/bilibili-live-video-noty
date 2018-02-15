@@ -1,7 +1,8 @@
+"use strict";
 /**
  * Created by allen on 2016/6/20.
  */
-"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 function isString(param) {
     return typeof param === 'string';
 }

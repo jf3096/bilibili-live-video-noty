@@ -1,15 +1,16 @@
 "use strict";
-var rp = require('request-promise');
-var Promise = require('bluebird');
+Object.defineProperty(exports, "__esModule", { value: true });
+var rp = require("request-promise");
+var Promise = require("bluebird");
 /**
  * MethodEnum
  * 请求方法常量
  */
+var MethodEnum;
 (function (MethodEnum) {
     MethodEnum[MethodEnum["GET"] = 0] = "GET";
     MethodEnum[MethodEnum["POST"] = 1] = "POST";
-})(exports.MethodEnum || (exports.MethodEnum = {}));
-var MethodEnum = exports.MethodEnum;
+})(MethodEnum = exports.MethodEnum || (exports.MethodEnum = {}));
 /**
  * processOptions
  * 根据OPTION, 加工数据

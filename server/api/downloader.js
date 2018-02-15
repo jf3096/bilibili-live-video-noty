@@ -1,8 +1,9 @@
+"use strict";
 /**
  * Created by allen on 2016/6/20.
  */
-"use strict";
-var http = require('http');
+Object.defineProperty(exports, "__esModule", { value: true });
+var http = require("http");
 /**
  * LOCATION_CHANGE_STATUS
  * 302重定向

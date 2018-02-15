@@ -1,6 +1,7 @@
 "use strict";
-var req_1 = require('./req');
-var bilibiliConfigs_1 = require('../models/bilibiliConfigs');
+Object.defineProperty(exports, "__esModule", { value: true });
+var req_1 = require("./req");
+var bilibiliConfigs_1 = require("../models/bilibiliConfigs");
 /**
  * Created by allen on 2016/6/21.
  */
