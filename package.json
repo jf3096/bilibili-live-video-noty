@@ -22,7 +22,7 @@
   "author": "Ailun She",
   "license": "ISC",
   "bilibiliConfigs": {
-    "scheduleInterval": 1,
+    "scheduleInterval": 10,
     "liveFlag": "LIVE",
     "downloadFolder": "ftp",
     "users": [

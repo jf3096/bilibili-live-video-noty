@@ -11,7 +11,6 @@ function readUserConfig() {
             row = row.trim();
             if (row) {
                 var splits = row.split(/\s+/);
-                console.log({ splits: splits });
                 if (splits.length > 1) {
                     result.push({
                         videoId: splits[0].trim(),
