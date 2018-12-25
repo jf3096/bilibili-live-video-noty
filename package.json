@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "nexe": "^2.0.0-rc.34",
+    "pkg": "^4.3.5",
     "ssh-exec": "2.0.0"
   },
   "scripts": {
