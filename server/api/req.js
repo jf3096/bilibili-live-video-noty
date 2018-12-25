@@ -38,6 +38,7 @@ function req(uri, data, method) {
     return rp(options).then(function (response) {
         return Promise.resolve(response);
     }).catch(function (err) {
+        debugger;
         return Promise.reject(err);
     });
 }

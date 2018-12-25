@@ -39,6 +39,7 @@ function locationDownloadUrl(url, resolve, loopCounter) {
     if (loopCounter === MAX_302_LOOP_TIME) {
         throw new Error('downloader.ts: potential infinite loop for seeking download url address');
     }
+    url = url.replace(/^https:/, 'http:');
     http.get(url, function (response) {
         if (response.statusCode === LOCATION_CHANGE_STATUS) {
             locationDownloadUrl(response.headers.location, resolve, loopCounter++);

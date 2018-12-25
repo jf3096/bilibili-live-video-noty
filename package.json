@@ -4,17 +4,19 @@
   "description": "B站直播提醒",
   "main": "index.js",
   "dependencies": {
-    "@types/invariant": "^2.2.28",
-    "bluebird": "^3.4.1",
-    "invariant": "^2.2.2",
-    "node-schedule": "^1.1.1",
-    "request-promise": "^3.0.0"
+    "@types/invariant": "2.2.28",
+    "bluebird": "3.4.1",
+    "invariant": "2.2.2",
+    "node-schedule": "1.1.1",
+    "request-promise": "3.0.0"
   },
   "devDependencies": {
-    "ssh-exec": "^2.0.0"
+    "nexe": "^2.0.0-rc.34",
+    "ssh-exec": "2.0.0"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "package": "pkg server.js --targets win"
   },
   "author": "Ailun She",
   "license": "ISC",
@@ -24,15 +26,7 @@
     "downloadFolder": "ftp",
     "users": [
       {
-        "name": "雷涟漪の日常",
-        "videoId": 20375
-      },
-      {
-        "name": "离城的直播间",
-        "videoId": 61132
-      },
-      {
-        "name": "艾伦测试",
+        "name": "艾伦",
         "videoId": 288546
       }
     ]
