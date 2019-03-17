@@ -16,7 +16,7 @@
 4. 创建文件流并下载
 
 ## 要求
-* NodeJS
+* NodeJS < 10
 
 ## 语言
 * Typescript
